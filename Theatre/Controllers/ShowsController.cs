@@ -43,6 +43,8 @@ private readonly TheatreContext _db;
   public ActionResult Details(int id)
   {
     Show thisShow = _db.Shows
+                        .Include(show => show.GenreShowJoinEntities)
+                        .ThenInclude(join => join.Genre)
                         .Include(show => show.ActorShowJoinEntities)
                         .ThenInclude(join => join.Actor)
                         .FirstOrDefault(show => show.ShowId == id);

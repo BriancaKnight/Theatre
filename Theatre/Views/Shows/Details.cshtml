@@ -2,7 +2,7 @@
   Layout = "_Layout";
 }
 
-@model Theatre.Models.Show
+@model Theatre.Models.Show;
 @using Theatre.Models;
 @using System.Collections.Generic;
 
@@ -10,6 +10,20 @@
 <h2>Show Details</h2>
 
 <h3>Show Name : @Model.ShowName</h3>
+
+@if (Model.GenreShowJoinEntities != null && Model.GenreShowJoinEntities.Count > 0)
+{
+  <h4>Genres</h4>
+  <ul>
+  @foreach (var join in Model.GenreShowJoinEntities)
+  {
+    <li>@join.Genre.GenreName</li>
+  }
+  </ul>
+}
+else{
+  <p>This show does not belong to a genre.</p>
+}
 
 @if (@Model.ActorShowJoinEntities.Count == 0)
 {
@@ -40,3 +54,6 @@ else
 <br />
 <br />
 <button>@Html.ActionLink("Back to list", "Index")</button>
+<br />
+<br />
+<button>@Html.ActionLink("Add a Genre", "AddGenre", new { id = Model.ShowId})</button>
