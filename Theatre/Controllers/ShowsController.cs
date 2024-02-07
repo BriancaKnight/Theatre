@@ -76,6 +76,26 @@ private readonly TheatreContext _db;
     _db.SaveChanges();
     return RedirectToAction("Index");
   }
-  
+
+    public ActionResult AddActor(int id)
+  {
+    Show thisShow = _db.Shows.FirstOrDefault(show => show.ShowId == id);
+    ViewBag.ActorId = new SelectList(_db.Actors, "ActorId", "ActorName");
+    return View(thisShow);
+  }
+
+  [HttpPost]
+  public ActionResult AddActor(Show show, int actorId)
+  {
+    #nullable enable
+    ActorShow? actorShowJoinEntity = _db.ActorShows.FirstOrDefault(join => (join.ActorId == actorId && join.ShowId == show.ShowId));
+    #nullable disable
+    if (actorShowJoinEntity == null && actorId != 0)
+    {
+      _db.ActorShows.Add(new ActorShow() { ActorId = actorId, ShowId = show.ShowId});
+      _db.SaveChanges();
+    }
+    return RedirectToAction("Details", new { id = show.ShowId });
+  }
 }
 }

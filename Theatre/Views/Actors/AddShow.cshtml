@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Theatre.Models.Actor
+
+<h2>Add a show to @Model.ActorName</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.ActorId)
+
+    @Html.Label("Select a show")
+    @Html.DropDownList("ShowId")
+
+    <input type="submit" value="Save" />
+}
+
+<button>@Html.ActionLink("Back to list", "Index")</button>
