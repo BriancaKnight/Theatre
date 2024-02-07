@@ -1,0 +1,15 @@
+
+@model Theatre.Models.Genre
+
+
+<h2>Add New Genre</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.GenreName)
+  @Html.TextBoxFor(model => model.GenreName)
+
+  <input type="submit" value="Add new Genre" class="btn btn-primary" />
+}
+
+<button>@Html.ActionLink("Show all Genres", "Index")</button>

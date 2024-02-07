@@ -14,9 +14,23 @@ public class GenresController: Controller
   {
     _db = db;
   }
+  
   public ActionResult Index()
   {
    return View(_db.Genres.ToList());
+  }
+  
+  public ActionResult Create()
+  {
+    return View();
+  }
+  
+  [HttpPost]
+  public ActionResult Create(Genre genre)
+  {
+    _db.Genres.Add(genre);
+    _db.SaveChanges();
+    return RedirectToAction("Index");
   }
 }
 }
