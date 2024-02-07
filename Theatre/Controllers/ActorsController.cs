@@ -51,6 +51,7 @@ private readonly TheatreContext _db;
     Actor thisActor = _db.Actors.FirstOrDefault(actor => actor.ActorId == id);
     return View(thisActor);
   }
+
   [HttpPost]
   public ActionResult Edit(Actor actor)
   {
@@ -58,5 +59,22 @@ private readonly TheatreContext _db;
     _db.SaveChanges();
     return RedirectToAction("Index");
   }
+
+  public ActionResult Delete(int id)
+  {
+    Actor thisActor = _db.Actors.FirstOrDefault(actor => actor.ActorId == id);
+    return View(thisActor);
+  }  
+
+  [HttpPost, ActionName("Delete")]
+  public ActionResult DeleteConfirmed(int id)
+  {
+    Actor thisActor = _db.Actors.FirstOrDefault(actor => actor.ActorId == id);
+    _db.Actors.Remove(thisActor);
+    _db.SaveChanges();
+    return RedirectToAction("Index");
+  }
+
+  
 }
 }
