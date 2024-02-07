@@ -1,0 +1,18 @@
+@{
+  Layout ="_Layout";
+}
+
+@model Theatre.Models.Show
+
+<h4>Add a new Show:</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.ShowName)
+  @Html.TextBoxFor(model => model.ShowName)
+  <input type="submit" value="add a new Show" />
+
+}
+
+<button>@Html.ActionLink("Show all shows", "Index")</button>
+<button>@Html.ActionLink("Home", "Index", "Home")</button>

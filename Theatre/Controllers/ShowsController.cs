@@ -26,5 +26,25 @@ private readonly TheatreContext _db;
    List<Show> model = _db.Shows.ToList();
    return View(model);
  }
+
+   public ActionResult Create()
+  {
+    return View();
+  }
+
+  [HttpPost]
+  public ActionResult Create(Show show)
+  {
+   _db.Shows.Add(show);
+   _db.SaveChanges();
+   return RedirectToAction("Index");
+  }
+  
+  public ActionResult Details(int id)
+  {
+    Show thisShow = _db.Shows.FirstOrDefault(show => show.ShowId == id);
+    return View(thisShow);
+  }
+  
 }
 }

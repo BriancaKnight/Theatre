@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Theatre.Models.Show
+<h2>Show Details</h2>
+
+<h3>Show Name : @Model.ShowName</h3>
+
+
+
+
+<button>@Html.ActionLink("Edit Show", "Edit", new { id = Model.ShowId})</button>
+<br />
+<br />
+<button>@Html.ActionLink("Delete Show", "Delete", new { id = Model.ShowId}) </button>
+<br />
+<br />
+<button>@Html.ActionLink("Back to list", "Index")</button>
