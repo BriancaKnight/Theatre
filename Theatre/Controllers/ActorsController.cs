@@ -42,7 +42,10 @@ private readonly TheatreContext _db;
 
   public ActionResult Details(int id)
   {
-    Actor thisActor = _db.Actors.FirstOrDefault(actor => actor.ActorId == id);
+    Actor thisActor = _db.Actors
+                            .Include(actor => actor.ActorShowJoinEntities)
+                            .ThenInclude(join => join.Show)
+                            .FirstOrDefault(actor => actor.ActorId == id);
     return View(thisActor);
   }
   

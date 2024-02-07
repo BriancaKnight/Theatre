@@ -6,7 +6,8 @@ namespace Theatre.Models
   {
     public DbSet<Actor> Actors { get; set; }
     public DbSet<Show> Shows { get; set; }
+    public DbSet<ActorShow> ActorShows { get; set; }
 
-    public TheatreContext(DbContextOptions options) : base (options) {}
+    public TheatreContext(DbContextOptions options) : base (options) { }
   }
 }

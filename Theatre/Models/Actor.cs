@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Theatre.Models
 {
@@ -6,6 +7,6 @@ namespace Theatre.Models
   {
     public int ActorId { get; set; }
     public string ActorName { get; set; }
-    
+    public List <ActorShow> ActorShowJoinEntities { get; }
   }
 }

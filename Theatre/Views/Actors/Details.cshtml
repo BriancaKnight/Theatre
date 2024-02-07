@@ -3,11 +3,28 @@
 }
 
 @model Theatre.Models.Actor
+@using Theatre.Models;
+@using System.Collections.Generic;
+
+
 <h2>Actor Details</h2>
 
 <h3>Actor Name : @Model.ActorName</h3>
 
-
+@if (@Model.ActorShowJoinEntities.Count == 0)
+{
+  <p>This Actor is not in any shows.</p>
+}
+else 
+{
+  <h4>This Actor's current shows:</h4>
+  <ul>
+  @foreach (ActorShow join in Model.ActorShowJoinEntities)
+  {
+    <li>@join.Show.ShowName</li>
+  }
+  </ul>
+}
 
 
 <button>@Html.ActionLink("Edit Actor", "Edit", new { id = Model.ActorId})</button>
