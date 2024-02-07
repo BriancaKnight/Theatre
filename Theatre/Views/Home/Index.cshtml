@@ -34,5 +34,23 @@
 </ul>
 </div>
 
+<hr />
+<div class="card">
+<h2>Genres</h2>
+<hr />
+@if(Model["genres"].Length == 0)
+{
+  <p>No genres have been added yet</p>
+}
+<ul>
+  @foreach (Genre genre in Model["genres"])
+  {
+    <li>@Html.ActionLink(@genre.GenreName, "Details", "Genres", new { id = @genre.GenreId })</li>
+  }
+</ul>
+</div>
+<hr />
+
 <button>@Html.ActionLink("Actor List", "Index", "Actors")</button>
 <button>@Html.ActionLink("Show List", "Index", "Shows")</button>
+<button>@Html.ActionLink("Genre List", "Index", "Genres")</button>

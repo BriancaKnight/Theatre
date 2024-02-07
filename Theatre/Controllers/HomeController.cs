@@ -19,9 +19,11 @@ namespace Theatre.Controllers
     {
       Actor[] actors = _db.Actors.ToArray();
       Show[] shows = _db.Shows.ToArray();
+      Genre[] genres = _db.Genres.ToArray();
       Dictionary<string, object[]> model = new Dictionary<string, object[]>();
       model.Add("actors", actors);
       model.Add("shows", shows);
+      model.Add("genres", genres);
       return View(model);
     }
   }
