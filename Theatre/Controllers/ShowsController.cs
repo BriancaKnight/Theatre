@@ -59,7 +59,20 @@ private readonly TheatreContext _db;
     _db.SaveChanges();
     return RedirectToAction("Index");
   }
+  public ActionResult Delete(int id)
+  {
+    Show thisShow = _db.Shows.FirstOrDefault(show => show.ShowId == id);
+    return View(thisShow);
+  }  
 
+  [HttpPost, ActionName("Delete")]
+  public ActionResult DeleteConfirmed(int id)
+  {
+    Show thisShow = _db.Shows.FirstOrDefault(show => show.ShowId == id);
+    _db.Shows.Remove(thisShow);
+    _db.SaveChanges();
+    return RedirectToAction("Index");
+  }
   
 }
 }
