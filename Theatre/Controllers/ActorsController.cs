@@ -39,5 +39,11 @@ private readonly TheatreContext _db;
    _db.SaveChanges();
    return RedirectToAction("Index");
   }
+
+  public ActionResult Details(int id)
+  {
+    Actor thisActor = _db.Actors.FirstOrDefault(actor => actor.ActorId == id);
+    return View(thisActor);
+  }
 }
 }
