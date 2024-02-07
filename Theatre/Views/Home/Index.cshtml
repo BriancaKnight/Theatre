@@ -1,0 +1,38 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Theatre.Models;
+
+<div class="card">
+<h2>Actors</h2>
+<hr />
+@if (Model["actors"].Length == 0)
+{
+  <p>No actors have been added yet!</p>
+}
+<ul>
+@foreach (Actor actor in Model["actors"])
+{
+  <li>@Html.ActionLink(@actor.ActorName, "Details", "Actors", new { id = @actor.ActorId})</li>
+}
+</ul>
+</div>
+
+<div class="card">
+<h2>Shows</h2>
+<hr />
+@if (Model["shows"].Length == 0)
+{
+  <p>No shows have been added yet!</p>
+}
+<ul>
+@foreach (Show show in Model["shows"])
+{
+  <li>@Html.ActionLink(@show.ShowName, "Details", "Shows", new { id = @show.ShowId})</li>
+}
+</ul>
+</div>
+
+<p>@Html.ActionLink("Actor List", "Index", "Actors")</p>
+<p>@Html.ActionLink("Show List", "Index", "Shows")</p>
