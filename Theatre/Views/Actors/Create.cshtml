@@ -1,0 +1,18 @@
+@{
+  Layout ="_Layout";
+}
+
+@model Theatre.Models.Actor
+
+<h4>Add a new Actor:</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.ActorName)
+  @Html.TextBoxFor(model => model.ActorName)
+  <input type="submit" value="add a new Actor" />
+
+}
+
+<button>@Html.ActionLink("Show all actors", "Index")</button>
+<button>@Html.ActionLink("Home", "Index", "Home")</button>

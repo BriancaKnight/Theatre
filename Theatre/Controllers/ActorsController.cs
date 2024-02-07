@@ -27,7 +27,17 @@ private readonly TheatreContext _db;
    return View(model);
  }
 
+  public ActionResult Create()
+  {
+    return View();
+  }
 
-
+  [HttpPost]
+  public ActionResult Create(Actor actor)
+  {
+   _db.Actors.Add(actor);
+   _db.SaveChanges();
+   return RedirectToAction("Index");
+  }
 }
 }
