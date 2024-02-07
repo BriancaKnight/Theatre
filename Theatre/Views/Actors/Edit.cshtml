@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Theatre.Models.Actor
+
+<h2>Edit Actor</h2>
+
+<h4>Edit @Model.ActorName</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.ActorId)
+
+  @Html.LabelFor(model => model.ActorName)
+  @Html.EditorFor(model => model.ActorName)
+
+  <input type="submit" value="Save" />
+}
+
+<button>@Html.ActionLink("Back to list", "Index")</button>
