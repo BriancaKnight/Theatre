@@ -46,5 +46,20 @@ private readonly TheatreContext _db;
     return View(thisShow);
   }
   
+    public ActionResult Edit(int id)
+  {
+    Show thisShow = _db.Shows.FirstOrDefault(show => show.ShowId == id);
+    return View(thisShow);
+  }
+
+  [HttpPost]
+  public ActionResult Edit(Show show)
+  {
+    _db.Shows.Update(show);
+    _db.SaveChanges();
+    return RedirectToAction("Index");
+  }
+
+  
 }
 }
