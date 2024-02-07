@@ -98,5 +98,14 @@ private readonly TheatreContext _db;
     }
     return RedirectToAction("Details", new { id = actor.ActorId });
   }
+
+  [HttpPost]
+  public ActionResult DeleteJoin(int joinId)
+  {
+    ActorShow joinEntry = _db.ActorShows.FirstOrDefault(entry => entry.ActorShowId == joinId);
+    _db.ActorShows.Remove(joinEntry);
+    _db.SaveChanges();
+    return RedirectToAction("Index");
+  }
 }
 }
