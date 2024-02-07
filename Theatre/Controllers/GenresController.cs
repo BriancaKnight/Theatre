@@ -32,5 +32,26 @@ public class GenresController: Controller
     _db.SaveChanges();
     return RedirectToAction("Index");
   }
+
+  public ActionResult AddShow(int id)
+  {
+    Genre thisGenre = _db.Genres.FirstOrDefault(genres => genres.GenreId == id);
+    ViewBag.ShowId = new SelectList(_db.Shows, "ShowId", "ShowName");
+    return View(thisGenre);
+  }
+
+  [HttpPost]
+  public ActionResult AddShow(Genre genre, int showId)
+  {
+    #nullable enable
+    GenreShow? joinEntity = _db.GenreShows.FirstOrDefault(join => (join.ShowId == showId && join.GenreId == genre.GenreId));
+    #nullable disable
+    if (joinEntity == null && showId !=0)
+    {
+      _db.GenreShows.Add(new GenreShow() {ShowId = showId, GenreId = genre.GenreId });
+      _db.SaveChanges();
+    }
+    return RedirectToAction("Details", new { id = genre.GenreId });
+  }
 }
 }
