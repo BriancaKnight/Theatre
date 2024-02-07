@@ -8,5 +8,6 @@ namespace Theatre.Models
     public int ShowId { get; set; }
     public string ShowName { get; set; }
     public List<ActorShow> ActorShowJoinEntities { get; }
+    public List<GenreShow> GenreShowJoinEntities { get; }
   }
 }
