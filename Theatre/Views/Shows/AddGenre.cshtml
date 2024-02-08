@@ -1,0 +1,17 @@
+@model Theatre.Models.Show
+
+<h2>Add a genre</h2>
+
+<h4>Add a genre to this show: @Html.DisplayFor(model => model.ShowName)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.ShowId)
+
+    @Html.Label("Select genre")
+    @Html.DropDownList("GenreId")
+
+    <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
