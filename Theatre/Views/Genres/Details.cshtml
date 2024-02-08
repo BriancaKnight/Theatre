@@ -17,4 +17,5 @@ else
 }
 
 <button>@Html.ActionLink("Back to genre list", "Index")</button>
-<button>@Html.ActionLink("Edit the Genre", "Edit", new { id = Model.GenreId })</button>
+<button>@Html.ActionLink("Edit this Genre", "Edit", new { id = Model.GenreId })</button>
+<button>@Html.ActionLink("Delete this Genre", "Delete", new { id = Model.GenreId })</button>

@@ -76,5 +76,20 @@ public class GenresController: Controller
     _db.SaveChanges();
     return RedirectToAction("Index");
   }
+
+  public ActionResult Delete(int id)
+  {
+    Genre thisGenre = _db.Genres.FirstOrDefault(genres => genres.GenreId == id);
+    return View(thisGenre);
+  }
+
+  [HttpPost, ActionName("Delete")]
+  public ActionResult DeleteConfirmed(int id)
+  {
+    Genre thisGenre = _db.Genres.FirstOrDefault(genres => genres.GenreId == id);
+    _db.Genres.Remove(thisGenre);
+    _db.SaveChanges();
+    return RedirectToAction("Index");
+  }
   }
 }
