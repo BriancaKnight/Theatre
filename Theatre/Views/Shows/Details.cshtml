@@ -15,6 +15,11 @@
   @foreach (var join in Model.GenreShowJoinEntities)
   {
     <li>@join.Genre.GenreName</li>
+    @using (Html.BeginForm("GenreDeleteJoin", "Shows"))
+    {
+      @Html.Hidden("joinId", @join.GenreShowId)
+      <input type="submit" value="Delete" />
+    }
   }
   </ul>
 }

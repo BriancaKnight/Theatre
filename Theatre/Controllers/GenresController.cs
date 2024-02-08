@@ -91,5 +91,14 @@ public class GenresController: Controller
     _db.SaveChanges();
     return RedirectToAction("Index");
   }
+  
+  [HttpPost]
+  public ActionResult GenreDeleteJoin(int joinId)
+  {
+    GenreShow joinEntry = _db.GenreShows.FirstOrDefault(entry => entry.GenreShowId == joinId);
+    _db.GenreShows.Remove(joinEntry);
+    _db.SaveChanges();
+    return RedirectToAction("Index");
   }
+}
 }

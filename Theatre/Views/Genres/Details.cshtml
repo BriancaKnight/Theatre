@@ -12,10 +12,16 @@ else
         @foreach (GenreShow join in Model.GenreShowJoinEntities)
         {
             <li>@join.Show.ShowName</li>
+            @using (Html.BeginForm("GenreDeleteJoin", "Genres"))
+            {
+                @Html.Hidden("joinId", @join.GenreShowId)
+                <input type="submit" value="Delete">
+            }
         }
     </ul>
 }
 
 <button>@Html.ActionLink("Back to genre list", "Index")</button>
+<button>@Html.ActionLink("Add a Show", "AddShow", new { id = Model.GenreId })</button>
 <button>@Html.ActionLink("Edit this Genre", "Edit", new { id = Model.GenreId })</button>
 <button>@Html.ActionLink("Delete this Genre", "Delete", new { id = Model.GenreId })</button>
