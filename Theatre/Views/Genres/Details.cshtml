@@ -1,0 +1,19 @@
+@using Theatre.Models
+@model Theatre.Models.Genre
+
+@if (@Model.GenreShowJoinEntities.Count == 0)
+{
+    <h2>This genre doesnt have any shows.</h2>
+}
+else 
+{
+    <h2>Shows in this genre: @Model.GenreName </h2>
+    <ul>
+        @foreach (GenreShow join in Model.GenreShowJoinEntities)
+        {
+            <li>@join.Show.ShowName</li>
+        }
+    </ul>
+}
+
+<button>@Html.ActionLink("Back to genre list", "Index")</button>

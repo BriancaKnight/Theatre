@@ -33,6 +33,15 @@ public class GenresController: Controller
     return RedirectToAction("Index");
   }
 
+  public ActionResult Details(int id)
+  {
+    Genre thisGenre = _db.Genres
+                          .Include(genre => genre.GenreShowJoinEntities)
+                          .ThenInclude(join => join.Show)
+                          .FirstOrDefault(genre => genre.GenreId == id);
+    return View(thisGenre);
+  }
+
   public ActionResult AddShow(int id)
   {
     Genre thisGenre = _db.Genres.FirstOrDefault(genres => genres.GenreId == id);
