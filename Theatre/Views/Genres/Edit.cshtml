@@ -1,0 +1,17 @@
+@model Theatre.Models.Genre
+
+<h2>Edit</h2>
+
+<h4>Edit this Genre: @Model.GenreName</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.GenreId)
+
+  @Html.LabelFor(model => model.GenreName)
+  @Html.EditorFor(model => model.GenreName)
+
+  <input type="submit" value="Save" />
+}
+
+<button>@Html.ActionLink("Back to list", "Index")</button>

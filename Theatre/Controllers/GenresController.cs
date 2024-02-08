@@ -62,5 +62,19 @@ public class GenresController: Controller
     }
     return RedirectToAction("Details", new { id = genre.GenreId });
   }
-}
+  
+  public ActionResult Edit(int id)
+  {
+    Genre thisGenre = _db.Genres.FirstOrDefault(genres => genres.GenreId == id);
+    return View(thisGenre);
+  }
+
+  [HttpPost]
+  public ActionResult Edit(Genre genre)
+  {
+    _db.Genres.Update(genre);
+    _db.SaveChanges();
+    return RedirectToAction("Index");
+  }
+  }
 }
